@@ -510,22 +510,7 @@ def contact():
 # 7. PRIVACY POLICY & TERMS PAGE (FOR GOOGLE ADSENSE & TRUST)
 @app.route('/privacy-policy')
 def privacy():
-    content = """
-    <section class="hero">
-        <div class="badge">🔒 Legal Information</div>
-        <h1>Privacy Policy & <span>Terms of Use</span></h1>
-        <p>Transparency and data protection guidelines for visitors of AbdulBhai.com.</p>
-    </section>
-
-    <div class="container prose">
-        <div class="card">
-            <h3>1. Information We Collect</h3>
-            <p>At AbdulBhai.com, we respect your privacy. We only collect personal information (such as your name, phone number, or email address) when you voluntarily submit it through our Contact Us form.</p>
-            <h3>2. Cookies & Google AdSense Compliance</h3>
-            <p>We may use standard analytics and third-party advertising partners (such as Google AdSense) that use cookies to serve relevant advertisements based on your prior visits to our website.</p>
-            <h3>3. Official Representation</h3>
-            <p>This website serves as the official personal and professional portal of Abdul Bhai, President of Markazi Tajir Ittehad Thatta and Vice Chairman of New Al-Noor Group of Companies Thatta.</p>
-        </div>
+   
     </div>
     """
     return render_page("Privacy Policy & Terms", content)
