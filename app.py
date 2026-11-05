@@ -12,101 +12,12 @@ BASE_LAYOUT = """
     <title>{{ title }} | Abdul Bhai - Official Portal</title>
     <meta name="description" content="Official Website of Abdul Bhai (Abdul Rasool) - President Markazi Tajir Ittehad Thatta, Vice Chairman New Al-Noor Group of Companies Thatta, AI Expert, SEO Specialist & Content Writer.">
     <style>
-        :root {
-            --bg-dark: #090d16;
-            --bg-card: #131c2e;
-            --primary: #38bdf8;
-            --gold: #f59e0b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #1e293b;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; scroll-behavior: smooth; }
+     padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; scroll-behavior: smooth; }
         body { background: var(--bg-dark); color: var(--text-main); line-height: 1.7; display: flex; flex-direction: column; min-height: 100vh; }
         
         /* Top Bar */
         .topbar { background: #05080f; border-bottom: 1px solid var(--border); padding: 8px 6%; display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); flex-wrap: wrap; gap: 10px; }
-        .topbar span strong { color: var(--gold); }
-
-        /* Navigation */
-        nav { background: rgba(19, 28, 46, 0.95); backdrop-filter: blur(10px); padding: 18px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 15px; }
-        .logo { font-size: 26px; font-weight: 800; color: var(--text-main); text-decoration: none; letter-spacing: 0.5px; }
-        .logo span { color: var(--primary); }
-        .nav-links { display: flex; gap: 22px; list-style: none; flex-wrap: wrap; align-items: center; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 15px; transition: 0.2s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
-        .btn-nav { background: linear-gradient(135deg, var(--primary), #0284c7); color: #090d16 !important; padding: 9px 20px; border-radius: 8px; font-weight: 700 !important; }
-
-        /* Hero & Sections */
-        .container { max-width: 1200px; margin: 0 auto; padding: 60px 6%; flex: 1; width: 100%; }
-        .hero { padding: 80px 6%; text-align: center; background: radial-gradient(circle at top, #1e293b 0%, var(--bg-dark) 70%); border-bottom: 1px solid var(--border); }
-        .badge { display: inline-block; background: rgba(245, 158, 11, 0.12); color: var(--gold); border: 1px solid rgba(245, 158, 11, 0.4); padding: 6px 18px; border-radius: 30px; font-size: 13px; font-weight: 600; margin-bottom: 20px; }
-        .hero h1 { font-size: 46px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; max-width: 850px; margin-left: auto; margin-right: auto; }
-        .hero h1 span { color: var(--primary); }
-        .hero p { font-size: 19px; color: var(--text-muted); max-width: 750px; margin: 0 auto 35px; }
-        .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-        .btn { padding: 13px 28px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 15px; transition: 0.25s; display: inline-block; border: none; cursor: pointer; }
-        .btn-primary { background: var(--primary); color: #090d16; }
-        .btn-primary:hover { background: #0284c7; color: #fff; }
-        .btn-outline { background: transparent; color: var(--text-main); border: 1px solid var(--border); }
-        .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
-
-        /* Stats Strip */
-        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; background: var(--bg-card); padding: 35px 6%; border-bottom: 1px solid var(--border); text-align: center; }
-        .stat-box h2 { font-size: 36px; color: var(--gold); margin-bottom: 5px; }
-        .stat-box p { color: var(--text-muted); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* Grid & Cards */
-        .section-title { text-align: center; margin-bottom: 45px; }
-        .section-title h2 { font-size: 34px; margin-bottom: 12px; }
-        .section-title h2 span { color: var(--primary); }
-        .section-title p { color: var(--text-muted); max-width: 650px; margin: 0 auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 50px; }
-        .card { background: var(--bg-card); border: 1px solid var(--border); padding: 30px; border-radius: 14px; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .card-tag { font-size: 12px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
-        .card h3 { font-size: 22px; margin-bottom: 12px; color: var(--text-main); }
-        .card p { color: var(--text-muted); font-size: 15px; margin-bottom: 15px; }
-        .card ul { padding-left: 18px; color: var(--text-muted); font-size: 14px; margin-bottom: 15px; }
-        .card ul li { margin-bottom: 6px; }
-
-        /* Forms & Interactive Tools */
-        .form-box { background: var(--bg-card); border: 1px solid var(--border); padding: 35px; border-radius: 14px; max-width: 750px; margin: 0 auto; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 14px; background: var(--bg-dark); border: 1px solid var(--border); color: #fff; border-radius: 8px; font-size: 15px; }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); }
-        .alert-success { background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
-
-        /* FAQ & Long Content */
-        .faq-item { background: var(--bg-card); border: 1px solid var(--border); padding: 22px; border-radius: 10px; margin-bottom: 15px; }
-        .faq-item h4 { color: var(--primary); font-size: 18px; margin-bottom: 8px; }
-        .prose h3 { color: var(--primary); margin: 25px 0 10px; }
-        .prose p { color: var(--text-muted); margin-bottom: 15px; }
-
-        /* Floating WhatsApp */
-        .whatsapp-float { position: fixed; bottom: 25px; right: 25px; background: #25d366; color: #fff; padding: 12px 20px; border-radius: 50px; font-weight: 700; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.4); z-index: 999; display: flex; align-items: center; gap: 8px; font-size: 14px; }
-
-        /* Footer */
-        footer { background: #05080f; border-top: 1px solid var(--border); padding: 60px 6% 25px; margin-top: auto; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 35px; max-width: 1200px; margin: 0 auto 40px; }
-        .footer-col h4 { color: var(--text-main); margin-bottom: 16px; font-size: 18px; }
-        .footer-col p, .footer-col a { color: var(--text-muted); font-size: 14px; text-decoration: none; display: block; margin-bottom: 10px; }
-        .footer-col a:hover { color: var(--primary); }
-        .copyright { text-align: center; border-top: 1px solid var(--border); padding-top: 25px; color: #64748b; font-size: 13px; }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-            .nav-links { gap: 12px; font-size: 14px; }
-        }
-    </style>
-</head>
-<body>
-    <div class="topbar">
-        <span>🏛️ <strong>President:</strong> Markazi Tajir Ittehad Thatta | <strong>Vice Chairman:</strong> New Al-Noor Group of Companies Thatta</span>
-        <span>📍 Makli / Thatta, Sindh, Pakistan | ✉️ contact@abdulbhai.com</span>
-    </div>
-
+       
     <nav>
         <a href="/" class="logo">Abdul<span>Bhai</span>.com</a>
         <ul class="nav-links">
