@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NexPlay - Block World</title>
+<style>
+body {
+    margin: 0;
+    background: #101923;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+h1 { color: #a3ff12; padding-top: 20px; }
+#world {
+    display: grid;
+    grid-template-columns: repeat(8, 40px);
+    gap: 3px;
+    justify-content: center;
+    margin: 30px auto;
+}
+.block {
+    width: 40px;
+    height: 40px;
+    background: #367b42;
+    border: 1px solid #1d4024;
+    cursor: pointer;
+    font-size: 24px;
+}
+button.action {
+    padding: 12px 20px;
+    background: #a3ff12;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+a { color: #a3ff12; }
+</style>
+</head>
+<body>
+<h1>🧱 BLOCK WORLD</h1>
+<p>Click the blocks to build your world!</p>
+
+<div id="world"></div>
+
+<button class="action" onclick="makeWorld()">RESET WORLD</button>
+<p><a href="/">← Back to NexPlay</a></p>
+
+<script>
+const world = document.getElementById("world");
+
+function makeWorld() {
+    world.innerHTML = "";
+
+    for (let i = 0; i < 64; i++) {
+        const block = document.createElement("button");
+        block.className = "block";
+        block.textContent = i >= 40 ? "🟩" : "";
+
+        block.onclick = function () {
+            block.textContent = block.textContent ? "" : "🟩";
+        };
+
+        world.appendChild(block);
+    }
+}
+
+makeWorld();
+</script>
+</body>
+</html>
