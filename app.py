@@ -1,3 +1,4 @@
+from urllib.parse import unquote
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -15,6 +16,7 @@ def home():
 
 @app.route("/play/<game_name>")
 def play(game_name):
+    game_name = unquote(game_name)
     valid_games = [g["name"] for g in games]
 
     if game_name not in valid_games:
@@ -23,8 +25,10 @@ def play(game_name):
     if game_name == "Cricket Arena":
         return render_template("cricket_arena.html")
 
+    if game_name == "Block World":
+        return render_template("block_world.html")
+
     return render_template("game.html", game=game_name)
 
 if __name__ == "__main__":
-    print("NexPlay is starting...")
     app.run(debug=True)
