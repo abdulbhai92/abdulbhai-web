@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexPlay - Cricket Arena</title>
+    <style>
+        body {
+            margin: 0;
+            background: #070b10;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px 15px;
+        }
+        h1 { color: #a3ff12; margin-bottom: 5px; }
+        .scoreboard {
+            background: #111a22;
+            border: 1px solid #293a30;
+            border-radius: 12px;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .score { font-size: 42px; font-weight: bold; color: #a3ff12; margin: 10px 0; }
+        .status { font-size: 18px; min-height: 28px; color: #b0b9c0; }
+        .shots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        button.shot-btn {
+            padding: 14px 20px;
+            background: #a3ff12;
+            color: #080d12;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button.shot-btn:hover { transform: scale(1.06); }
+        button.reset-btn {
+            padding: 10px 18px;
+            background: transparent;
+            color: #a3ff12;
+            border: 1px solid #a3ff12;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        a { color: #a3ff12; text-decoration: none; display: inline-block; margin-top: 25px; }
+    </style>
+</head>
+<body>
+    <h1>🏏 CRICKET ARENA</h1>
+    <p>Choose your shot before the bowler bowls!</p>
+
+    <div class="scoreboard">
+        <div>RUNS / WICKETS</div>
+        <div class="score"><span id="runs">0</span> / <span id="wickets">0</span></div>
+        <div>Balls Bowled: <span id="balls">0</span> / 12</div>
+        <p class="status" id="commentary">Ready to bat!</p>
+    </div>
+
+    <div class="shots" id="controls">
+        <button class="shot-btn" onclick="playShot(1)">Single (1)</button>
+        <button class="shot-btn" onclick="playShot(4)">Cover Drive (4)</button>
+        <button class="shot-btn" onclick="playShot(6)">Lofted Six (6)</button>
+    </div>
+
+    <button class="reset-btn" onclick="resetMatch()">NEW MATCH</button>
+    <br>
+    <a href="/">← Back to NexPlay</a>
+
+    <script>
+        let runs = 0, wickets = 0, balls = 0;
+
+        function playShot(shot) {
+            if (wickets >= 3 || balls >= 12) return;
+            balls++;
+            const risk = shot === 6 ? 0.35 : (shot === 4 ? 0.2 : 0.08);
+            if (Math.random() < risk) {
+                wickets++;
+                document.getElementById("commentary").textContent = "💥 BOWLED! You lost a wicket!";
+            } else {
+                runs += shot;
+                document.getElementById("commentary").textContent =
+                    shot === 6 ? "🚀 MASSIVE SIX!" : (shot === 4 ? "🔥 Cracking FOUR!" : "🏃 Quick single taken.");
+            }
+            updateUI();
+        }
+
+        function updateUI() {
+            document.getElementById("runs").textContent = runs;
+            document.getElementById("wickets").textContent = wickets;
+            document.getElementById("balls").textContent = balls;
+            if (wickets >= 3 || balls >= 12) {
+                document.getElementById("commentary").textContent += ` — Innings Over! Final Score: ${runs}`;
+            }
+        }
+
+        function resetMatch() {
+            runs = 0; wickets = 0; balls = 0;
+            document.getElementById("commentary").textContent = "Ready to bat!";
+            updateUI();
+        }
+    </script>
+</body>
+</html>
