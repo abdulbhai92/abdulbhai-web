@@ -1,73 +1,204 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NexPlay - Block World</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NexPlay | Block World</title>
+
 <style>
-body {
+* {
     margin: 0;
-    background: #101923;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #070b10;
     color: white;
     font-family: Arial, sans-serif;
     text-align: center;
+    padding: 20px;
 }
-h1 { color: #a3ff12; padding-top: 20px; }
+
+header {
+    display: flex;
+    justify-content: space-between;
+    max-width: 750px;
+    margin: auto;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #a3ff12;
+}
+
+a {
+    color: #a3ff12;
+    text-decoration: none;
+}
+
+h1 {
+    color: #a3ff12;
+    margin: 30px 0 10px;
+}
+
+p {
+    color: #b8c4ce;
+    margin: 15px;
+}
+
+.tools {
+    margin: 25px auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 7px;
+    padding: 12px;
+    font-weight: bold;
+}
+
+.tool {
+    background: #263746;
+    color: white;
+}
+
+.tool.active {
+    background: #a3ff12;
+    color: black;
+}
+
 #world {
     display: grid;
     grid-template-columns: repeat(8, 40px);
     gap: 3px;
     justify-content: center;
-    margin: 30px auto;
+    margin: 25px auto;
+    background: #111a22;
+    padding: 15px;
+    width: fit-content;
+    border-radius: 12px;
 }
+
 .block {
     width: 40px;
     height: 40px;
-    background: #367b42;
-    border: 1px solid #1d4024;
-    cursor: pointer;
-    font-size: 24px;
+    font-size: 23px;
+    padding: 0;
+    background: #18232d;
+    border: 1px solid #344451;
 }
-button.action {
-    padding: 12px 20px;
+
+.block:hover {
+    border: 2px solid white;
+}
+
+.action {
     background: #a3ff12;
-    border: 0;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
+    color: black;
+    padding: 13px 22px;
+    margin: 8px;
 }
-a { color: #a3ff12; }
+
+@media(max-width:400px) {
+    #world {
+        grid-template-columns: repeat(8, 32px);
+        gap: 2px;
+        padding: 8px;
+    }
+
+    .block {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+}
 </style>
 </head>
+
 <body>
+
+<header>
+    <div class="logo">NEX<span>PLAY</span></div>
+    <a href="/">← Home</a>
+</header>
+
 <h1>🧱 BLOCK WORLD</h1>
-<p>Click the blocks to build your world!</p>
+<p>Build your own amazing world!</p>
+
+<div class="tools">
+    <button class="tool active" onclick="selectBlock('🟩',this)">Grass</button>
+    <button class="tool" onclick="selectBlock('🟫',this)">Dirt</button>
+    <button class="tool" onclick="selectBlock('🪨',this)">Stone</button>
+    <button class="tool" onclick="selectBlock('🟦',this)">Water</button>
+    <button class="tool" onclick="selectBlock('',this)">Eraser</button>
+</div>
 
 <div id="world"></div>
 
-<button class="action" onclick="makeWorld()">RESET WORLD</button>
+<button class="action" onclick="makeWorld()">RESET WORLD ↻</button>
+
+<p>Selected Block: <span id="selected">Grass 🟩</span></p>
+
 <p><a href="/">← Back to NexPlay</a></p>
 
 <script>
+
 const world = document.getElementById("world");
 
+let selectedBlock = "🟩";
+
 function makeWorld() {
+
     world.innerHTML = "";
 
     for (let i = 0; i < 64; i++) {
+
         const block = document.createElement("button");
+
         block.className = "block";
+
         block.textContent = i >= 40 ? "🟩" : "";
 
-        block.onclick = function () {
-            block.textContent = block.textContent ? "" : "🟩";
+        block.setAttribute("aria-label", "World block " + (i + 1));
+
+        block.onclick = function() {
+            block.textContent = selectedBlock;
         };
 
         world.appendChild(block);
     }
 }
 
+function selectBlock(block, button) {
+
+    selectedBlock = block;
+
+    document.querySelectorAll(".tool").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    document.getElementById("selected").textContent =
+        block || "Eraser";
+
+}
+
 makeWorld();
+
 </script>
+
 </body>
 </html>
