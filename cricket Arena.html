@@ -3,125 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NexPlay | Cricket Arena</title>
+<title>NexPlay | Real Cricket Arena</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
-body {
-    background: #070b10;
+body{
+    background:#07120e;
     color: white;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     text-align: center;
-    padding: 25px;
 }
 
-header {
+header{
     display: flex;
-    justify-content: space-between;
-    max-width: 850px;
-    margin: auto;
+    justify-content:space-between;
+    padding:20px 7%;
+    background:#101923;
 }
 
-.logo {
-    font-size: 25px;
-    font-weight: bold;
+.logo{font-size:25px;font-weight:bold}
+.logo span{color:#a3ff12}
+a{color:#a3ff12;text-decoration:none}
+
+h1{
+    color:#a3ff12;
+    margin:25px 0 8px;
 }
 
-.logo span {
-    color: #a3ff12;
+.subtitle{color:#b9c8bf}
+
+.stadium{
+    max-width:900px;
+    margin:25px auto;
+    padding:20px;
+    background:linear-gradient(#163c2a,#245d36);
+    border:5px solid #507e39;
+    border-radius:50% 50% 15px 15px;
+    box-shadow:0 0 25px #1c693c;
 }
 
-a {
-    color: #a3ff12;
-    text-decoration: none;
+.crowd{
+    background:repeating-linear-gradient(
+    90deg,#263746 0px,#263746 8px,
+    #18232d 8px,#18232d 16px);
+    border-radius:50%;
+    padding:25px 10px;
 }
 
-.game {
-    background: #111a22;
-    max-width: 850px;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 18px;
-    border: 1px solid #263746;
-}
-
-h1 {
-    color: #a3ff12;
-    margin: 20px;
-}
-
-.score {
+.pitch{
+    background:#c2a16c;
+    border:4px solid #e2c28b;
+    border-radius:50%;
+    width:85%;
+    max-width:430px;
+    height:220px;
+    margin:15px auto;
     display: flex;
-    justify-content: space-around;
-    margin: 30px 0;
-    gap: 10px;
+    justify-content:space-around;
+    align-items: center;
+    position: relative;
 }
 
-.box {
-    background: #070b10;
-    padding: 20px;
-    border-radius: 10px;
-    flex: 1;
+.player{
+    font-size:48px;
 }
 
-.box h2 {
-    color: #a3ff12;
+.ball{
+    font-size:30px;
+    animation: none;
 }
 
-.pitch {
-    background: #205638;
-    padding: 35px 10px;
-    border-radius: 12px;
-    margin: 20px 0;
+.scoreboard{
+    max-width:850px;
+    margin:20px auto;
+    padding:20px;
+    background:#111a22;
+    border:1px solid #a3ff12;
+    border-radius:12px;
 }
 
-#message {
-    font-size: 20px;
-    margin: 15px;
-    font-weight: bold;
-}
-
-.buttons {
+.score{
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
 }
 
-button {
-    background: #a3ff12;
-    color: black;
-    border: none;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 18px;
+.score div{
+    background:#070b10;
+    padding:15px 5px;
+    border-radius:8px;
+}
+
+.score small{
+    color:#9baaaa;
+}
+
+.score h2{
+    color:#a3ff12;
+    margin-top:8px;
+}
+
+#commentary{
+    margin:20px auto;
+    max-width:850px;
+    padding:17px;
+    background:#182b22;
+    border-radius:10px;
+    font-size:17px;
+    min-height:55px;
+}
+
+.panel{
+    max-width:850px;
+    margin:20px auto;
+    padding:20px;
+    background:#111a22;
+    border-radius:12px;
+}
+
+button{
+    background:#a3ff12;
+    color:#07120e;
+    border:0;
+    border-radius:8px;
+    padding:13px 18px;
+    margin:6px;
+    font-size:16px;
     font-weight: bold;
     cursor: pointer;
 }
 
-button:hover {
-    background: #c1ff65;
+button:hover{background:#c5ff72}
+
+button: disabled{
+    opacity:.4;
+    cursor:not-allowed;
 }
 
-button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-
-#reset {
-    background: #263746;
+.secondary{
+    background:#263746;
     color: white;
-    margin-top: 20px;
 }
 
-@media(max-width:550px) {
-    .buttons {
-        grid-template-columns: repeat(3, 1fr);
-    }
+#controls{display:none}
+
+@media(max-width:550px){
+    .score{grid-template-columns:repeat(2,1fr)}
+    .pitch{height:170px}
+    .player{font-size:35px}
+    .stadium{margin:15px 8px}
 }
 </style>
 </head>
@@ -133,131 +164,217 @@ button:disabled {
     <a href="/">← Home</a>
 </header>
 
-<div class="game">
+<h1>🏏 REAL CRICKET ARENA</h1>
+<p class="subtitle">Experience the excitement of cricket!</p>
 
-    <h1>🏏 Cricket Arena</h1>
-    <p>Play Your Cricket Match!</p>
+<div class="scoreboard">
+    <h2 id="teamName">PAKISTAN</h2>
 
     <div class="score">
-
-        <div class="box">
-            <p>RUNS</p>
+        <div>
+            <small>RUNS</small>
             <h2 id="runs">0</h2>
         </div>
 
-        <div class="box">
-            <p>WICKETS</p>
+        <div>
+            <small>WICKETS</small>
             <h2 id="wickets">0</h2>
         </div>
 
-        <div class="box">
-            <p>BALLS</p>
-            <h2 id="balls">0/6</h2>
+        <div>
+            <small>OVERS</small>
+            <h2 id="overs">0.0</h2>
         </div>
 
+        <div>
+            <small>TARGET</small>
+            <h2 id="target">-</h2>
+        </div>
+    </div>
+</div>
+
+<div class="stadium">
+    <div class="crowd">
+        <h2>🏟️ INTERNATIONAL STADIUM</h2>
+
+        <div class="pitch">
+            <div class="player">🏏</div>
+            <div class="ball" id="ball">🏐</div>
+            <div class="player">🎯</div>
+        </div>
+
+        <p>CRICKET GROUND</p>
+    </div>
+</div>
+
+<div id="commentary">
+    Welcome to NexPlay Cricket Arena!
+</div>
+
+<div class="panel" id="startPanel">
+    <h2>🏆 Match Setup</h2>
+    <p>Choose your team and start the match.</p>
+
+    <button onclick="startGame()">START MATCH</button>
+</div>
+
+<div class="panel" id="controls">
+
+    <h2 id="gameTitle">YOUR BATTING</h2>
+    <p id="instruction">Select your batting shot.</p>
+
+    <div id="batting">
+        <button onclick="play(1)">1 RUN</button>
+        <button onclick="play(2)">2 RUNS</button>
+        <button onclick="play(3)">3 RUNS</button>
+        <button onclick="play(4)">FOUR 4️⃣</button>
+        <button onclick="play(5)">5 RUNS</button>
+        <button onclick="play(6)">SIX 6️⃣</button>
     </div>
 
-    <div class="pitch">
-        <h2>🏟️ Cricket Ground</h2>
-        <div id="message">Choose Your Shot!</div>
-        <p id="result">Match Starting...</p>
-    </div>
-
-    <h3>Select Your Shot</h3>
-
-    <br>
-
-    <div class="buttons">
-        <button onclick="play(1)">1</button>
-        <button onclick="play(2)">2</button>
-        <button onclick="play(3)">3</button>
-        <button onclick="play(4)">4</button>
-        <button onclick="play(5)">5</button>
-        <button onclick="play(6)">6</button>
-    </div>
-
-    <button id="reset" onclick="resetGame()">
-        Play Again ↻
-    </button>
+    <button class="secondary" id="restart"
+    onclick="startGame()">RESTART MATCH ↻</button>
 
 </div>
 
 <script>
 
-let runs = 0;
-let wickets = 0;
-let balls = 0;
-let finished = false;
+let runs=0;
+let wickets=0;
+let balls=0;
+let innings=1;
+let target=0;
+let computerScore=0;
+let gameOver=false;
+let mode="batting";
 
-function play(shot) {
+const maxBalls=12;
+const maxWickets=3;
 
-    if (finished) return;
+function say(message){
+    document.getElementById("commentary").innerText=message;
+}
 
-    let bowling = Math.floor(Math.random() * 6) + 1;
+function startGame(){
+
+    runs=0;
+    wickets=0;
+    balls=0;
+    innings=1;
+    target=0;
+    computerScore=0;
+    gameOver=false;
+    mode="batting";
+
+    document.getElementById("startPanel").style.display="none";
+    document.getElementById("controls").style.display="block";
+
+    document.getElementById("gameTitle").innerText="YOUR BATTING";
+    document.getElementById("instruction").innerText="Choose your shot!";
+    document.getElementById("batting").style.display="block";
+
+    say("The match has started! Good luck, batsman!");
+
+    updateScore();
+}
+
+function play(shot){
+
+    if(gameOver) return;
+
+    let bowling=Math.floor(Math.random()*6)+1;
 
     balls++;
 
-    if (shot === bowling) {
+    let message="";
+
+    if(shot===bowling){
 
         wickets++;
 
-        document.getElementById("message").innerText = "OUT! ❌";
+        const outs=["BOWLED! Wicket taken!",
+                    "CAUGHT! The fielder takes it!",
+                    "LBW! The umpire gives it OUT!"];
 
-    } else {
+        message=outs[Math.floor(Math.random()*outs.length)];
 
-        runs += shot;
+    }else{
 
-        document.getElementById("message").innerText =
-        shot + " Runs Scored! 🏏";
+        runs+=shot;
+
+        if(shot===4) message="FOUR! Beautiful boundary!";
+        else if(shot===6) message="SIX! What a massive hit!";
+        else message=shot+" runs scored!";
 
     }
 
-    document.getElementById("result").innerText =
-    "Your Shot: " + shot + " | Computer: " + bowling;
+    document.getElementById("ball").innerText="🏐";
+
+    say(message+" You played "+shot+", bowler delivered "+bowling+".");
 
     updateScore();
 
-    if (balls === 6 || wickets === 2) {
+    if(innings===2 && runs>=target){
+        finish("YOU WON! 🏆");
+        return;
+    }
 
-        finished = true;
+    if(balls>=maxBalls || wickets>=maxWickets){
 
-        document.getElementById("message").innerText =
-        "MATCH OVER! Final Score: " + runs + "/" + wickets;
+        if(innings===1){
 
-        document.querySelectorAll(".buttons button")
-        .forEach(btn => btn.disabled = true);
+            target=runs+1;
+            computerScore=target+Math.floor(Math.random()*15);
+
+            say("First innings completed! Target is "+target+". Computer score: "+computerScore+". Starting second innings!");
+
+            innings=2;
+            runs=0;
+            wickets=0;
+            balls=0;
+
+            document.getElementById("gameTitle").innerText="SECOND INNINGS";
+            document.getElementById("teamName").innerText="PAKISTAN - CHASE";
+            document.getElementById("instruction").innerText="Chase the target of "+target+" runs!";
+            document.getElementById("target").innerText=target;
+
+            updateScore();
+
+        }else{
+
+            if(runs>=target){
+                finish("YOU WON! 🏆");
+            }else{
+                finish("COMPUTER WON! 🏆");
+            }
+
+        }
 
     }
 
 }
 
-function updateScore() {
+function updateScore(){
 
-    document.getElementById("runs").innerText = runs;
+    document.getElementById("runs").innerText=runs;
+    document.getElementById("wickets").innerText=wickets;
 
-    document.getElementById("wickets").innerText = wickets;
+    document.getElementById("overs").innerText=
+    Math.floor(balls/6)+"."+(balls%6);
 
-    document.getElementById("balls").innerText = balls + "/6";
+    document.getElementById("target").innerText=
+    innings===1?"-": target;
 
 }
 
-function resetGame() {
+function finish(message){
 
-    runs = 0;
-    wickets = 0;
-    balls = 0;
-    finished = false;
+    gameOver=true;
 
-    updateScore();
+    say(message+" Final score: "+runs+"/"+wickets);
 
-    document.getElementById("message").innerText =
-    "Choose Your Shot!";
-
-    document.getElementById("result").innerText =
-    "Match Starting...";
-
-    document.querySelectorAll(".buttons button")
-    .forEach(btn => btn.disabled = false);
+    document.getElementById("instruction").innerText=
+    "Match completed! Press Restart to play again.";
 
 }
 
